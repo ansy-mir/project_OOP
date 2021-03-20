@@ -49,11 +49,11 @@ export default class MiniSlider extends Slider {
   }
 
   bindTiggers() {
-    this.next.addEventListener('click', () => {
+    this.next[0].addEventListener('click', () => {
       this.nextSlide();      
     });
 
-    this.prev.addEventListener('click', () => {
+    this.prev[0].addEventListener('click', () => {
       for (let i = this.slides.length - 1; i > 0; i -= 1){
         if(this.slides[i].tagName !== "BUTTON") {
           let active = this.slides[i];
@@ -66,7 +66,8 @@ export default class MiniSlider extends Slider {
   }
 
   init() {
-    this.container.style.cssText = `
+    try {
+      this.container.style.cssText = `
       display: flex;
       flex-wrap: wrap;
       overflow: hidden;
@@ -89,5 +90,9 @@ export default class MiniSlider extends Slider {
         this.autoplayStart();
       });
     }
+
+    } catch(e) {}
+
+
   }
 }
